@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "995726580080",
+    "project_id": "pais-fea72",
+    "storage_bucket": "pais-fea72.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995726580080:android:23beb01b4325d3825157b5",
+        "android_client_info": {
+          "package_name": "com.example.t3_pais"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6IR1rDlT7sT_uI9zmByquxiPERrZR-T8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
