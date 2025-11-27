@@ -67,14 +67,14 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 25),
-                Icon(Icons.lock, size: 50, color: Colors.blue[900]),
+                Image.asset('assets/imgs/onu_logo.png', height: 300),
                 const SizedBox(height: 25),
 
                 Text(
                   'Crie sua conta',
                   style: TextStyle(
                     color: Colors.blue[800],
-                    fontSize: 16,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -85,6 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: emailController,
                   hintText: 'Email',
                   obscureText: false,
+                  fillColor: Colors.blue.shade100,
                 ),
 
                 const SizedBox(height: 10),
@@ -93,6 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: passwordController,
                   hintText: 'Senha',
                   obscureText: true,
+                  fillColor: Colors.blue.shade100,
                 ),
 
                 const SizedBox(height: 10),
@@ -101,6 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: confirmPasswordController,
                   hintText: 'Confirme a Senha',
                   obscureText: true,
+                  fillColor: Colors.blue.shade100,
                 ),
 
                 const SizedBox(height: 25),

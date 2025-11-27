@@ -49,8 +49,8 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: <Widget>[
                 const SizedBox(height: 50),
-                Icon(Icons.lock, size: 100, color: Colors.blue[900]),
-                const SizedBox(height: 50),
+                Image.asset('assets/imgs/onu_logo.png', width: 300),
+                const SizedBox(height: 100),
                 Text(
                   "Seja Bem Vindo!",
                   style: TextStyle(
@@ -66,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: userNameController,
                   hintText: "Email",
                   obscureText: false,
+                  fillColor: Colors.blue.shade100,
                 ),
 
                 const SizedBox(height: 15),
@@ -74,6 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: passwordController,
                   hintText: "Senha",
                   obscureText: true,
+                  fillColor: Colors.blue.shade100,
                 ),
 
                 const SizedBox(height: 15),
@@ -100,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                 MyButton(
                   onTap: signUserIn,
                   text: "Entrar",
-                  color: Colors.blue[900], 
+                  color: Colors.blue[900],
                 ),
 
                 const SizedBox(height: 25),
