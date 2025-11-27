@@ -80,7 +80,6 @@ class _CadastroPaisPageState extends State<CadastroPaisPage> {
 
       PaisHelper db = PaisHelper();
 
-      // Alteração aqui: Métodos agora são void (Future<void>) e nomes ajustados
       if (widget.paisParaEditar == null) {
         await db.createPais(pais);
       } else {
@@ -93,8 +92,6 @@ class _CadastroPaisPageState extends State<CadastroPaisPage> {
 
   @override
   Widget build(BuildContext context) {
-    // (O restante do método build permanece igual ao original)
-    // Mantenha o código do Scaffold, Form, etc.
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -150,7 +147,6 @@ class _CadastroPaisPageState extends State<CadastroPaisPage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                // Campos de Texto (iguais ao original)
                 TextFormField(
                   controller: _nomeController,
                   decoration: const InputDecoration(

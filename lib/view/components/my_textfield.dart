@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
 class MyTextfield extends StatelessWidget {
-  // Adicione a variável para a cor
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
-  final Color? fillColor; // Nova propriedade
+  final Color? fillColor;
 
   const MyTextfield({
     super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
-    this.fillColor, // Adicione ao construtor
+    this.fillColor,
   });
 
   @override
@@ -29,7 +28,6 @@ class MyTextfield extends StatelessWidget {
           focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
           ),
-          // Usa a cor passada ou um cinza claro padrão
           fillColor: fillColor ?? Colors.grey.shade200,
           filled: true,
           hintText: hintText,

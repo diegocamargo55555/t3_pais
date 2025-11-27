@@ -54,7 +54,6 @@ class _PaisPageState extends State<PaisPage> {
     }
   }
 
-  // ID agora é String
   _deletarPais(String id) async {
     await dbPais.deletePais(id);
     _atualizarLista();
@@ -64,7 +63,7 @@ class _PaisPageState extends State<PaisPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lista de Países (Firebase)'), // Atualizado título
+        title: const Text('Lista de Países (Firebase)'),
         centerTitle: true,
         actions: [
           PopupMenuButton<OrderOption>(
@@ -108,7 +107,6 @@ class _PaisPageState extends State<PaisPage> {
         },
       ),
       body: Container(
-        // ... (Manter o decoration da imagem de fundo)
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
@@ -186,7 +184,6 @@ class _PaisPageState extends State<PaisPage> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        // ID é string, garantido pelo modelo
                                         _deletarPais(p.id!);
                                         Navigator.pop(context);
                                       },
