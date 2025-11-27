@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:t3_pais/view/components/my_button.dart';
 import 'package:t3_pais/view/components/my_textfield.dart';
+import 'package:t3_pais/view/register_page.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -14,11 +14,12 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
+
   void signUserIn() async {
     showDialog(
       context: context,
       builder: (context) {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       },
     );
     try {
@@ -26,13 +27,13 @@ class _LoginPageState extends State<LoginPage> {
         email: userNameController.text,
         password: passwordController.text,
       );
-      Navigator.pop(context);
+      if (mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
+      if (mounted) Navigator.pop(context);
       showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(title: Text("Usuário/Senha Incorretas!"));
+          return const AlertDialog(title: Text("Usuário/Senha Incorretas!"));
         },
       );
     }
@@ -41,69 +42,90 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.blue[50],
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
             child: Column(
               children: <Widget>[
-                SizedBox(height: 50),
-                Icon(Icons.lock, size: 100),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
+                Icon(Icons.lock, size: 100, color: Colors.blue[900]),
+                const SizedBox(height: 50),
                 Text(
                   "Seja Bem Vindo!",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue[800],
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 25),
+
+                const SizedBox(height: 25),
+
                 MyTextfield(
                   controller: userNameController,
                   hintText: "Email",
                   obscureText: false,
                 ),
-                SizedBox(height: 15),
+
+                const SizedBox(height: 15),
+
                 MyTextfield(
                   controller: passwordController,
                   hintText: "Senha",
                   obscureText: true,
                 ),
 
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
+
                 Padding(
-                  padding: EdgeInsetsGeometry.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Text(
                         "Esqueceu sua senha?",
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
+                          color: Colors.blue[700],
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 25),
-                MyButton(onTap: signUserIn, text: "Entrar"),
+
+                const SizedBox(height: 25),
+
+                MyButton(
+                  onTap: signUserIn,
+                  text: "Entrar",
+                  color: Colors.blue[900], 
+                ),
+
+                const SizedBox(height: 25),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       "Não tem Cadastro?",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.blue[800]),
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterPage(),
+                          ),
+                        );
+                      },
                       child: Text(
                         "Registre-se agora",
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.blue[900],
                           fontWeight: FontWeight.bold,
                         ),
                       ),
