@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:t3_pais/database/model/pais_model.dart';
 
-class PaisHelper {
+class PaisService {
   final CollectionReference _collection = FirebaseFirestore.instance.collection(
     'paises',
   );

@@ -1,12 +1,12 @@
 class Pais {
-  int? id;
+  String? id;
   String nome;
   String capital;
   int populacao;
   String sigla;
   String continente;
   String regimePolitico;
-  String? bandeira; 
+  String? bandeira;
 
   Pais({
     this.id,
@@ -16,32 +16,31 @@ class Pais {
     required this.sigla,
     required this.continente,
     required this.regimePolitico,
-    this.bandeira, 
+    this.bandeira,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'nome': nome,
       'capital': capital,
       'populacao': populacao,
       'sigla': sigla,
       'continente': continente,
       'regime_politico': regimePolitico,
-      'bandeira': bandeira, 
+      'bandeira': bandeira,
     };
   }
 
-  factory Pais.fromMap(Map<String, dynamic> map) {
+  factory Pais.fromMap(Map<String, dynamic> map, String docId) {
     return Pais(
-      id: map['id'],
-      nome: map['nome'],
-      capital: map['capital'],
-      populacao: map['populacao'],
-      sigla: map['sigla'],
-      continente: map['continente'],
-      regimePolitico: map['regime_politico'],
-      bandeira: map['bandeira'], 
+      id: docId,
+      nome: map['nome'] ?? '',
+      capital: map['capital'] ?? '',
+      populacao: map['populacao'] ?? 0,
+      sigla: map['sigla'] ?? '',
+      continente: map['continente'] ?? '',
+      regimePolitico: map['regime_politico'] ?? '',
+      bandeira: map['bandeira'],
     );
   }
 }

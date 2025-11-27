@@ -79,24 +79,28 @@ class _CadastroPaisPageState extends State<CadastroPaisPage> {
       );
 
       PaisHelper db = PaisHelper();
+
+      // Alteração aqui: Métodos agora são void (Future<void>) e nomes ajustados
       if (widget.paisParaEditar == null) {
-        await db.CreatePais(pais);
+        await db.createPais(pais);
       } else {
         await db.updatePais(pais);
       }
+
       if (mounted) Navigator.pop(context, true);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    // (O restante do método build permanece igual ao original)
+    // Mantenha o código do Scaffold, Form, etc.
     return Scaffold(
       appBar: AppBar(
         title: Text(
           widget.paisParaEditar == null ? 'Novo País' : 'Editar País',
         ),
       ),
-
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -146,6 +150,7 @@ class _CadastroPaisPageState extends State<CadastroPaisPage> {
                   ),
                 ),
                 const SizedBox(height: 20),
+                // Campos de Texto (iguais ao original)
                 TextFormField(
                   controller: _nomeController,
                   decoration: const InputDecoration(
@@ -178,7 +183,7 @@ class _CadastroPaisPageState extends State<CadastroPaisPage> {
                     if (value == null || value.isEmpty)
                       return 'Campo obrigatório';
                     if (int.tryParse(value) == null)
-                      return 'Digite apenas números inteiros';
+                      return 'Digite apenas números';
                     return null;
                   },
                 ),
@@ -193,7 +198,7 @@ class _CadastroPaisPageState extends State<CadastroPaisPage> {
                     if (value == null || value.isEmpty)
                       return 'Campo obrigatório';
                     if (value.length < 2 || value.length > 3)
-                      return 'A sigla deve ter 2 ou 3 caracteres';
+                      return 'Sigla deve ter 2 ou 3 letras';
                     return null;
                   },
                 ),
