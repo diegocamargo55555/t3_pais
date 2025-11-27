@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:t3_pais/database/helper/pais_helper.dart';
 import 'package:t3_pais/database/model/pais_model.dart';
+import 'package:t3_pais/service/pais_service.dart';
 import 'package:t3_pais/view/cadastro_page.dart';
 
 class PaisPage extends StatefulWidget {
@@ -14,19 +14,19 @@ class PaisPage extends StatefulWidget {
 enum OrderOption { orderAZ, orderZA, orderPopDesc, orderPopAsc }
 
 class _PaisPageState extends State<PaisPage> {
-  late PaisHelper dbPais;
+  late PaisService paisService;
   List<Pais> listaPaises = [];
   OrderOption _currentOrder = OrderOption.orderAZ;
 
   @override
   void initState() {
     super.initState();
-    dbPais = PaisHelper();
+    paisService = PaisService();
     _atualizarLista();
   }
 
   _atualizarLista() async {
-    List<Pais> x = await dbPais.getPaises();
+    List<Pais> x = await paisService.getPaises();
     setState(() {
       listaPaises = x;
       _ordenarLista();
@@ -55,7 +55,7 @@ class _PaisPageState extends State<PaisPage> {
   }
 
   _deletarPais(String id) async {
-    await dbPais.deletePais(id);
+    await paisService.deletePais(id);
     _atualizarLista();
   }
 

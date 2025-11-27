@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:t3_pais/database/helper/pais_helper.dart';
 import 'package:t3_pais/database/model/pais_model.dart';
+import 'package:t3_pais/service/pais_service.dart';
 
 class CadastroPaisPage extends StatefulWidget {
   final Pais? paisParaEditar;
@@ -78,7 +78,7 @@ class _CadastroPaisPageState extends State<CadastroPaisPage> {
         bandeira: _caminhoImagemBandeira,
       );
 
-      PaisHelper db = PaisHelper();
+      PaisService db = PaisService();
 
       if (widget.paisParaEditar == null) {
         await db.createPais(pais);
