@@ -1,8 +1,9 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:t3_pais/database/model/pais_model.dart';
 import 'package:t3_pais/service/pais_service.dart';
-import 'package:t3_pais/view/cadastro_page.dart';
+import 'package:t3_pais/view/pais_cadastro_page.dart';
 
 class PaisPage extends StatefulWidget {
   const PaisPage({super.key});
@@ -23,6 +24,10 @@ class _PaisPageState extends State<PaisPage> {
     super.initState();
     paisService = PaisService();
     _atualizarLista();
+  }
+
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
   }
 
   _atualizarLista() async {
@@ -66,6 +71,7 @@ class _PaisPageState extends State<PaisPage> {
         title: const Text('Lista de Países (Firebase)'),
         centerTitle: true,
         actions: [
+          IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout)),
           PopupMenuButton<OrderOption>(
             icon: const Icon(Icons.sort),
             onSelected: (OrderOption result) {
