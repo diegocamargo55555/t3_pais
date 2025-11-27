@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:t3_pais/database/model/pais_model.dart';
 import 'package:t3_pais/service/pais_service.dart';
 import 'package:t3_pais/view/pais_cadastro_page.dart';
+import 'package:t3_pais/view/pais_detalhe_page.dart'; 
+import 'package:url_launcher/url_launcher.dart'; 
 
 class PaisPage extends StatefulWidget {
   const PaisPage({super.key});
@@ -64,11 +66,20 @@ class _PaisPageState extends State<PaisPage> {
     _atualizarLista();
   }
 
+  Future<void> _abrirLink(String urlString) async {
+    final Uri url = Uri.parse(urlString);
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Não foi possível abrir o link: $urlString')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lista de Países (Firebase)'),
+        title: const Text('Lista de Países'),
         centerTitle: true,
         actions: [
           IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout)),
@@ -140,6 +151,27 @@ class _PaisPageState extends State<PaisPage> {
                       vertical: 5,
                     ),
                     child: ListTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PaisDetalhePage(pais: p),
+                          ),
+                        );
+                      },
+                      onLongPress: () { // abir link
+                        if (p.link.isNotEmpty) {
+                          _abrirLink(p.link);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Nenhum link cadastrado para este país.',
+                              ),
+                            ),
+                          );
+                        }
+                      },
                       leading:
                           p.bandeira != null && File(p.bandeira!).existsSync()
                           ? SizedBox(

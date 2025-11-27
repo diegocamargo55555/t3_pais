@@ -19,6 +19,8 @@ class _CadastroPaisPageState extends State<CadastroPaisPage> {
   final _capitalController = TextEditingController();
   final _populacaoController = TextEditingController();
   final _siglaController = TextEditingController();
+  final _descricaoController = TextEditingController();
+  final _linkController = TextEditingController();
 
   String? _continenteSelecionado;
   String? _regimeSelecionado;
@@ -48,6 +50,8 @@ class _CadastroPaisPageState extends State<CadastroPaisPage> {
       _capitalController.text = widget.paisParaEditar!.capital;
       _populacaoController.text = widget.paisParaEditar!.populacao.toString();
       _siglaController.text = widget.paisParaEditar!.sigla;
+      _descricaoController.text = widget.paisParaEditar!.descricao;
+      _linkController.text = widget.paisParaEditar!.link;
       _continenteSelecionado = widget.paisParaEditar!.continente;
       _regimeSelecionado = widget.paisParaEditar!.regimePolitico;
       _caminhoImagemBandeira = widget.paisParaEditar!.bandeira;
@@ -76,6 +80,8 @@ class _CadastroPaisPageState extends State<CadastroPaisPage> {
         continente: _continenteSelecionado!,
         regimePolitico: _regimeSelecionado!,
         bandeira: _caminhoImagemBandeira,
+        descricao: _descricaoController.text,
+        link: _linkController.text,
       );
 
       PaisService db = PaisService();
@@ -198,6 +204,29 @@ class _CadastroPaisPageState extends State<CadastroPaisPage> {
                     return null;
                   },
                 ),
+                TextFormField(
+                  controller: _linkController,
+                  decoration: const InputDecoration(
+                    labelText: 'Link (site)',
+                    filled: true,
+                    fillColor: Colors.white70,
+                  ),
+                  validator: (value) =>
+                      value!.isEmpty ? 'Campo obrigatório' : null,
+                ),
+
+                TextFormField(
+                  controller: _descricaoController,
+                  maxLines: 3,
+                  decoration: const InputDecoration(
+                    labelText: 'Descrição Detalhada',
+                    filled: true,
+                    fillColor: Colors.white70,
+                  ),
+                  validator: (value) =>
+                      value!.isEmpty ? 'Campo obrigatório' : null,
+                ),
+
                 const SizedBox(height: 10),
                 DropdownButtonFormField<String>(
                   value: _continenteSelecionado,
